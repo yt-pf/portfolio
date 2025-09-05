@@ -1,0 +1,101 @@
+<!doctype html>
+<html class="no-js" lang="japanese">
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>My Portfolio - gpt‑oss を Google Colab で快適に使う Jupyter Notebook</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Serif+Pro:400,700">
+    <link rel="stylesheet" type="text/css" href="https://yt-pf.github.io/portfolio/theme/css/main.css">
+
+
+</head>
+<body itemscope itemtype="http://schema.org/Blog">
+<header class="site-header">
+    <a href="https://yt-pf.github.io/portfolio">
+    </a>
+    <h1 itemprop="name"><a href="https://yt-pf.github.io/portfolio">My Portfolio</a></h1>
+</header>
+    <section class="main-content">
+  <article>
+    <header>
+      <h2>gpt‑oss を Google Colab で快適に使う Jupyter Notebook</h2>
+    </header>
+    
+
+    <h3>概要</h3>
+<p>DEPRICATED：このプロジェクトの大半は以下に引き継がれました。</p>
+<p><a href="https://yt-pf.github.io/portfolio/projects/project4.html">ローカル LLM で大量の英文をセキュアに翻訳する</a></p>
+<h4>課題と目的</h4>
+<p>ローカル LLM の検証のために、高スペックな GPU 環境が欲しい。</p>
+<p>Google Colab の無料プラン（T4 GPU）ではメモリが不足するおそれがある。</p>
+<p>Google Colab の無料プランで、実用に耐える速度で gpt-oss:20b を使用したい。</p>
+<h4>解決策</h4>
+<ul>
+<li>Flash Attention による推論速度高速化</li>
+<li>KV キャッシュの量子化によるメモリ最適化</li>
+<li>最適構成を検証するため、コンテキストサイズ、量子化ビット数をパラメータ化</li>
+</ul>
+<h4>メリット</h4>
+<ul>
+<li>ローカル実行が可能 → 機密データも安全に処理</li>
+<li>GPU コストゼロ（Colab 無料枠）で 20 B パラメータモデルを体験</li>
+<li>カスタマイズしやすい構成で、他のローカル LLM と比較検証が容易</li>
+</ul>
+<h4>デメリット</h4>
+<ul>
+<li>「実用に耐える速度」は主観的評価になるため、客観的ベンチマークが必要</li>
+<li>コンテキストサイズが大きくなるほど計算コストが増加</li>
+<li>コンテキストサイズが小さいとプロンプトが十分に理解されず、入力分割が必須</li>
+</ul>
+<h3>使用ライブラリ</h3>
+<ul>
+<li>Ollama</li>
+<li>spaCy</li>
+</ul>
+<h3>想定する動作環境</h3>
+<ul>
+<li>Google Colab</li>
+</ul>
+<h3>今後の課題</h3>
+<ul>
+<li>パラメータのチューニング<ul>
+<li>KV キャッシュ：q4_k_m 量子化でメモリ使用量はおよそ 13.8 GB だった（コンテキストサイズ最大時）。今後は q8 との速度・精度を比較。</li>
+<li>コンテキストサイズ：gpt-oss:20b での最大値（131072）でも、動作させることができた（キャッシュ q8, q4 量子化時）。ただし速度は実用に耐えない。</li>
+</ul>
+</li>
+<li>コンテキストサイズが限られていると、タスクが正常に処理できなくなる。そのため、input 文の トークン分割が必須になる。<ul>
+<li>候補として、langchain の RecursiveCharacterTextSplitter, tiktoken, nltk, spaCy など</li>
+<li>トークン数ではなく、文章の自然な区切りで分割したいため、spaCy を利用</li>
+</ul>
+</li>
+<li>プロンプトエンジニアリング<ul>
+<li>学習中</li>
+</ul>
+</li>
+</ul>
+<h3>想定される質問</h3>
+<p>Q. Transformers で実装しなかった理由は？</p>
+<p>A. 他のローカル LLM と比較したいので、Ollama を選択した。コード変更が最小限で済む点が大きい。</p>
+<h3>実行方法</h3>
+<ol>
+<li>Jupyter Notebook でファイルを開く</li>
+<li>ランタイムのタイプは GPU（T4）を選択</li>
+<li>1 セル目, 2 セル目の設定項目を編集する</li>
+<li>全セルを順に実行</li>
+</ol>
+<h3>ファイル</h3>
+<p><a href="https://yt-pf.github.io/portfolio/pages/project3/gpt-oss.ipynb">gpt-oss.ipynb</a></p>
+<h3>参考サイト</h3>
+<p><a href="https://kirekaku.com/1068/">Ollama チューニング：num_ctx/GPU 使用率を上げる実践ガイド</a></p>
+
+  </article>
+    </section>
+
+<footer class="site-footer">
+    <p>&copy; User </p>
+</footer></body>
+</html>
