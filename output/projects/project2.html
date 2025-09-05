@@ -1,0 +1,96 @@
+<!doctype html>
+<html class="no-js" lang="japanese">
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>My Portfolio - Grafana 可視化サンプル</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Serif+Pro:400,700">
+    <link rel="stylesheet" type="text/css" href="https://yt-pf.github.io/portfolio/theme/css/main.css">
+
+
+</head>
+<body itemscope itemtype="http://schema.org/Blog">
+<header class="site-header">
+    <a href="https://yt-pf.github.io/portfolio">
+    </a>
+    <h1 itemprop="name"><a href="https://yt-pf.github.io/portfolio">My Portfolio</a></h1>
+</header>
+    <section class="main-content">
+  <article>
+    <header>
+      <h2>Grafana 可視化サンプル</h2>
+    </header>
+    
+
+    <h3>概要</h3>
+<p>このリポジトリは、CSV ファイルを PostgreSQL にインポートし、Grafana で可視化するサンプルプロジェクトです。</p>
+<ul>
+<li>データソースは e-stat（<a href="https://www.e-stat.go.jp/">https://www.e-stat.go.jp/</a>）から取得した、過去 1 年間の転職者数です。</li>
+<li>完全に Docker 化されているので、ローカル環境に依存せずにすぐ試すことができます。</li>
+</ul>
+<h3>アピールポイント</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ETL</td>
+<td>SQL スクリプトで CSV を PostgreSQL にロードし、必要に応じて集計・変換を実施</td>
+</tr>
+<tr>
+<td>コンテナ化</td>
+<td>Docker Compose で PostgreSQL と Grafana を自動構築・起動</td>
+</tr>
+<tr>
+<td>即時可視化</td>
+<td>Grafana のダッシュボードがデフォルトで用意されており、ブラウザからすぐに確認可能</td>
+</tr>
+</tbody>
+</table>
+<h3>環境設定</h3>
+<p>.env ファイルを作成します。
+サンプルファイルが付属しているので、必要に応じてコピーして使用してください。</p>
+<div class="highlight"><pre><span></span><code>cp sample.env .env
+</code></pre></div>
+
+<h3>実行コマンド</h3>
+<div class="highlight"><pre><span></span><code>docker compose up -d --build
+</code></pre></div>
+
+<p>起動が完了すると、以下の URL で Grafana にアクセスできます。</p>
+<p>http://localhost:3000</p>
+<p>Grafana の ID, パスワードは共に admin です。</p>
+<h3>ダッシュボードの確認</h3>
+<p>Grafana のトップメニューから次の経路でダッシュボードを開きます。</p>
+<p>ホーム &gt; ダッシュボード&gt; 転職者ダッシュボード</p>
+<h3>改善余地</h3>
+<ul>
+<li>データセットが単一指標のシンプルなものだったため、可視化できる項目が少なかった<ul>
+<li>具体的なアクションプランを提案しづらい</li>
+<li>追加のデータソースを取得するなどの改善案</li>
+</ul>
+</li>
+<li>pandas や機械学習ライブラリと組み合わせて、回帰分析や予測モデルを作成すると、データのさらなる有効活用ができそう<ul>
+<li>機械学習ライブラリを用いたポートフォリオは<a href="https://yt-pf.github.io/portfolio/projects/project1.html">こちら</a></li>
+</ul>
+</li>
+</ul>
+<h3>ファイル</h3>
+<p>現在、リポジトリは公開していないため、zip ファイルをダウンロードし、解凍してください。</p>
+<p>zip ファイルは<a href="https://yt-pf.github.io/portfolio/pages/project2/grafana-sample.zip">こちら</a></p>
+
+  </article>
+    </section>
+
+<footer class="site-footer">
+    <p>&copy; User </p>
+</footer></body>
+</html>

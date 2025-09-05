@@ -1,6 +1,6 @@
 AUTHOR = "User"
 SITENAME = "My Portfolio"
-SITEURL = ""
+SITEURL = "http://localhost:8000"
 
 SITETITLE = "My Portfolio"  # genusテーマで使用
 SITESUBTITLE = ""
@@ -33,3 +33,18 @@ DISPLAY_CATEGORIES_ON_MENU = False
 DISPLAY_PAGES_ON_MENU = False
 
 STATIC_PATHS = ["images", "theme"]
+
+MARKDOWN = {
+    "extensions": [
+        "markdown.extensions.extra",
+        "markdown.extensions.codehilite",
+        "markdown.extensions.meta",
+        "mdx_truly_sane_lists",  # sane_listsが機能しない問題への対応
+    ],
+    "extension_configs": {
+        "markdown.extensions.codehilite": {"css_class": "highlight"},
+        "markdown.extensions.extra": {},
+        "markdown.extensions.meta": {},
+    },
+    "output_format": "html5",
+}
